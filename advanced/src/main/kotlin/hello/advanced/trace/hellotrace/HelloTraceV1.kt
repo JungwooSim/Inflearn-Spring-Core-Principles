@@ -30,13 +30,13 @@ class HelloTraceV1 {
         complete(status, null)
     }
 
-    fun exception(status: TraceStatus, e: Exception) {
+    fun exception(status: TraceStatus?, e: Exception) {
         complete(status, e)
     }
 
-    private fun complete(status: TraceStatus, e: Exception?) {
+    private fun complete(status: TraceStatus?, e: Exception?) {
         val stopTimeMs:Long = System.currentTimeMillis()
-        val resultTimeMs: Long = stopTimeMs - status.startTimeMs
+        val resultTimeMs: Long = stopTimeMs - status!!.startTimeMs
         val traceId: TraceId = status.traceId
 
         if (e == null) {
