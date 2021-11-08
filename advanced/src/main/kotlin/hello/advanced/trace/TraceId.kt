@@ -8,6 +8,7 @@ class TraceId() {
 
     constructor(id: String, level: Int) : this() {
         this.id = id
+        this.level = level
     }
 
     private fun createId(): String {

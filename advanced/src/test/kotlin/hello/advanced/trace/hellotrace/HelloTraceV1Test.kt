@@ -16,8 +16,10 @@ internal class HelloTraceV1Test {
 
     @Test
     fun begin_exception() {
-        val trace = HelloTraceV1()
-        val status: TraceStatus = trace.begin("hello")
-        trace.exception(status, IllegalStateException())
+        val trace = HelloTraceV2()
+        val status1: TraceStatus = trace.begin("hello")
+        val status2: TraceStatus = trace.beginSync(status1.traceId, "hello")
+        trace.exception(status2, IllegalStateException())
+        trace.exception(status1, IllegalStateException())
     }
 }
