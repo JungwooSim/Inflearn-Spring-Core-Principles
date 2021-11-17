@@ -10,7 +10,7 @@ internal class HelloTraceV2Test {
     @Test
     fun begin_end() {
         val trace = HelloTraceV2()
-        val status1: TraceStatus = trace.begin("hello1")
+        val status1: TraceStatus = trace.begin(traceId, "hello1")
         val status2: TraceStatus = trace.beginSync(status1.traceId, "hello2")
         trace.end(status2)
         trace.end(status1)
@@ -19,7 +19,7 @@ internal class HelloTraceV2Test {
     @Test
     fun begin_exception() {
         val trace = HelloTraceV2()
-        val status: TraceStatus = trace.begin("hello")
+        val status: TraceStatus = trace.begin(traceId, "hello")
         trace.exception(status, IllegalStateException())
     }
 }
