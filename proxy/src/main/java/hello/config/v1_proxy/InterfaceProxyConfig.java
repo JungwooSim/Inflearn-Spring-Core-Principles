@@ -1,7 +1,7 @@
 package hello.config.v1_proxy;
 
 import hello.config.v1_proxy.interface_proxy.OrderControllerInterfaceProxy;
-import hello.config.v1_proxy.interface_proxy.OrderRepositoryInterfaceProxy;
+import hello.config.v1_proxy.interface_proxy.OrderRepositoryVInterfaceProxy;
 import hello.config.v1_proxy.interface_proxy.OrderServiceInterfaceProxy;
 import hello.proxy.app.v1.*;
 import hello.proxy.trace.logtrace.LogTrace;
@@ -24,8 +24,8 @@ public class InterfaceProxyConfig {
     }
 
     @Bean
-    public OrderRepository1 orderRepository(LogTrace logTrace) {
+    public OrderRepositoryV1 orderRepository(LogTrace logTrace) {
         OrderRepositoryV1Impl repositoryImpl = new OrderRepositoryV1Impl();
-        return new OrderRepositoryInterfaceProxy(repositoryImpl, logTrace);
+        return new OrderRepositoryVInterfaceProxy(repositoryImpl, logTrace);
     }
 }
