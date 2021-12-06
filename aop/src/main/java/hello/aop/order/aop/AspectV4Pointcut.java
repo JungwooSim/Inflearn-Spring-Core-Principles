@@ -8,24 +8,16 @@ import org.aspectj.lang.annotation.Pointcut;
 
 @Slf4j
 @Aspect
-public class AspectV3 {
+public class AspectV4Pointcut {
 
-    //pointcut signature
-    @Pointcut("execution(* hello.aop.order..*(..))")
-    private void allOrder() {}
-
-    //pointcut signature
-    @Pointcut("execution(* *..*Service.*(..))")
-    private void allService() {}
-
-    @Around("allOrder()")
+    @Around("hello.aop.order.aop.Pointcuts.allOrder()")
     public Object doLog(ProceedingJoinPoint joinPoint) throws Throwable {
         log.info("[log] {}", joinPoint.getSignature()); // join point 시그니처
         return joinPoint.proceed();
     }
 
     //hello.aop.order 패키지와 하위 패키지 이면서 클래스 이름 패턴이 *Service
-    @Around("allOrder() && allService()")
+    @Around("hello.aop.order.aop.Pointcuts.orderAndService()")
     public Object doTransaction(ProceedingJoinPoint joinPoint) throws Throwable {
         try {
             log.info("[트랜잭션 시작] {}", joinPoint.getSignature());
