@@ -10,6 +10,10 @@ import org.springframework.aop.framework.ProxyFactory;
 @Slf4j
 public class ProxyCastingTest {
 
+    /**
+     * 타입 캐스팅은 의존 관계 주입시 문제가 발생.
+     */
+
     @Test
     void jdkProxy() {
         MemberServiceImpl target = new MemberServiceImpl();
